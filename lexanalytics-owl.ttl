@@ -1,0 +1,1321 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> . 
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix p: <http://dbpedia.org/resource/> .
+@prefix kb:<http://kbpedia.org/kko/rc/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>  .
+@prefix dct:     <http://purl.org/dc/terms/> .
+
+@prefix lexlegal: <http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#> .
+@prefix lexvocab: <http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos-vocab#> .
+@prefix ngconstitution: <http://www.constituteproject.org/constitution/Nigeria_2011/> .
+
+
+
+<http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl>
+  cc:license <http://creativecommons.org/licenses/by-sa/3.0/> ;
+  rdf:type owl:Ontology ;
+  rdfs:label "Lexanalytic Ontology for Nigerian Legal data" ;
+  dc:date "2020-10-01"^^xsd:date ;
+  dct:description "This is a document that uses Linked Data oriented content to describe an Ontology for Lexanalytics. It is a data model for publishing legal data as a Graph. This is an evolving spec." ;
+  owl:versionInfo "0.1.0" ;
+  dct:title "Lexanalytics Ontology";
+  dct:created "2020-10-01"^^xsd:date;
+  dct:modified "2020-12-19"^^xsd:date;
+  dct:modified "2022-05-26"^^xsd:date;
+
+  foaf:maker <http://twitter.com/emekaokoye#this> .
+  
+
+<http://www.constituteproject.org/constitution/Nigeria_2011/>  
+  a lexlegal:Constitution ;
+  rdfs:label "2011 Nigerian Constitution" .
+
+# ---------------------------------------------------------------------------
+# CLASSES
+#
+
+
+lexlegal:Object
+    a owl:Class;
+	dc:identifier "Object" ;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "LexanalyticsObject" ;
+    rdfs:comment "A base class representing all Lexanalytics objects" .
+
+	
+lexlegal:Person
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object ;
+    rdfs:subClassOf schema:Person;
+    rdfs:subClassOf foaf:Person;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Person" ;
+	dct:description "A human being regarded as an individual." ;
+	dc:identifier "Person" ;
+    rdfs:comment "A class representing a Person" .
+
+	
+lexlegal:Document
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object;
+    rdfs:subClassOf foaf:Document;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Document" ;
+	dc:identifier "Document" ;
+	dct:description "A piece of written, printed, or electronic matter that provides information or evidence or that serves as an official record" ;
+    rdfs:comment "A class representing a Document" .
+
+    
+lexlegal:Case
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Case" ;
+ 	dc:identifier "Case" ;
+	dct:description "A legal action, especially one to be decided in a court of law." ;
+    rdfs:comment "A class representing a Case" .
+	
+
+	
+lexlegal:Article
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:subClassOf schema:Article;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Article" ;
+ 	dc:identifier "Article" ;
+	dct:description "A piece of writing included with others in a newspaper, magazine, or other publication." ;
+    rdfs:comment "A class representing a Legal Article" .
+	
+
+lexlegal:Citation
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Citation" ;
+ 	dc:identifier "Citation" ;
+	dct:description "A reference to a previous case, used as guidance in the trying of comparable cases or in support of an argument." ;
+    rdfs:comment "A class representing a citation or cite " .
+	
+
+	
+lexlegal:Statute
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Statute" ;
+ 	dc:identifier "Statute" ;
+	dct:description "A statute is a formal written enactment of a legislative authority that governs the legal entities of a city, state, or country by way of consent." ;
+    rdfs:comment "A class representing a Statute " .
+	
+
+	
+lexlegal:Legislation
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:subClassOf schema:Legislation;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Legislation" ;
+ 	dc:identifier "Legislation" ;
+	dct:description "Laws, considered collectively" ;
+    rdfs:comment "A class representing a Legislation" .
+	
+
+	
+lexlegal:Constitution
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Document;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Constitution" ;
+ 	dc:identifier "Constitution" ;
+	dct:description "A body of fundamental principles or established precedents according to which a state or other organization is acknowledged to be governed" ;
+    rdfs:comment "A class representing the Constitution" .
+	
+
+	
+lexlegal:User
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Person;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "User" ;
+ 	dc:identifier "User" ;
+	dct:description "A person who uses or operates Lexanalytics" ;
+    rdfs:comment "A class representing a User" .
+	
+
+	
+	
+lexlegal:Organization
+    a owl:Class;
+    rdfs:subClassOf lexlegal:Object;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:subClassOf foaf:Organization ;
+	rdfs:subClassOf schema:Organization ;
+    rdfs:label "Organization" ;
+ 	dc:identifier "Organization" ;
+	dct:description "An organized group of people with a particular purpose, such as a business or government department." ;
+    rdfs:comment "A class representing an Organization" .
+	
+
+	
+
+lexlegal:Event
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object;
+    rdfs:subClassOf schema:Event;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Event" ;
+ 	dc:identifier "Event" ;
+	dct:description "A thing that happens or takes place, especially one of importance." ;
+    rdfs:comment "A class representing an Event" .
+
+    
+lexlegal:SearchEvent
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Event;
+	rdfs:subClassOf schema:SearchAction ;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "SearchEvent" ;
+ 	dc:identifier "SearchEvent" ;
+	dct:description "todo" ;
+    rdfs:comment "A class representing a Search Event" .
+    
+
+
+lexlegal:ViewEvent
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Event;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "ViewEvent" ;
+ 	dc:identifier "ViewEvent" ;
+	dct:description "todo" ;
+    rdfs:comment "A class representing a Entity viewing Event" .
+    
+
+
+	
+	
+lexlegal:ItemData
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object ;
+    rdfs:subClassOf schema:DataFeed ;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "ItemData" ;
+ 	dc:identifier "ItemData" ;
+	dct:description "todo" ;
+    rdfs:comment "Item Data" .
+	
+	
+lexlegal:Subscription
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Subscription" ;
+ 	dc:identifier "Subscription" ;
+	dct:description "An arrangement to receive something, typically a publication, regularly by paying in advance." ;
+    rdfs:comment "A class representing a Subscription" .
+    
+
+lexlegal:Bookmark
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Bookmark" ;
+ 	dc:identifier "Bookmark" ;
+	dct:description "A placeholder on a document to enable quick access in future" ;
+    rdfs:comment "A class representing a Bookmark" .
+    
+
+lexlegal:Annotation
+    a owl:Class ;
+    rdfs:subClassOf lexlegal:Object;
+	rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Annotation" ;
+ 	dc:identifier "Annotation" ;
+	dct:description "A note by way of explanation or comment added to a text " ;
+    rdfs:comment "A class representing an Annotation" .
+    
+
+	
+lexlegal:Judge
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Person;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Judge" ;
+ 	dc:identifier "Judge" ;
+	dct:description "A public officer appointed to decide cases in a law court." ;
+    rdfs:comment "A class representing a Judge" .
+	
+
+lexlegal:Counsel
+    a owl:Class ;    
+    rdfs:subClassOf lexlegal:Person;
+	rdfs:subClassOf schema:LegalService ;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:label "Counsel" ;
+ 	dc:identifier "Counsel" ;
+	dct:description "A legal counsel refers to a practitioner of law (an attorney or lawyer) who is allowed to practice in all courts of law" ;
+    rdfs:comment "A class representing a Legal Counsel" .
+	
+
+
+lexlegal:Court
+    a owl:Class;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:subClassOf lexlegal:Organization ;
+    rdfs:subClassOf schema:Courthouse ;
+    rdfs:label "Court" ;
+ 	dc:identifier "Court" ;
+	dct:description "A body of people presided over by a judge, judges, or magistrate, and acting as a tribunal in civil and criminal cases" ;
+    rdfs:comment "A class representing a Court" .
+
+
+lexlegal:File
+    a owl:Class;
+    rdfs:isDefinedBy lexlegal: ;
+    rdfs:subClassOf lexlegal:Object ;
+    rdfs:subClassOf schema:MediaObject ;
+    rdfs:label "File" ;
+ 	dc:identifier "File" ;
+	dct:description "A class representing a file such as an image, video, or audio object embedded in a web page or a downloadable dataset" ;
+    rdfs:comment "A class representing a file such as an image, video, or audio object embedded in a web page or a downloadable dataset" .
+
+
+
+# ---------------------------------------------------------------------------
+# PROPERTIES
+#
+
+
+lexlegal:hasID
+	rdf:type owl:DatatypeProperty, owl:InverseFunctionalProperty ;
+	owl:equivalentProperty schema:identifier ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasID" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with an Identity code" ;
+ 	rdfs:range xsd:string .
+
+
+lexlegal:hasRef
+	rdf:type owl:DatatypeProperty, owl:InverseFunctionalProperty ;
+	owl:equivalentProperty schema:identifier ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasRef" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with a Reference code" ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasSuitNumber
+	rdf:type owl:DatatypeProperty, owl:InverseFunctionalProperty ;
+	rdfs:subPropertyOf lexlegal:hasRef ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasSuitNumber" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of a Case with a Suit Number" ;
+	rdfs:domain lexlegal:Case ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasFirstName
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf lexlegal:hasName ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasFirstName" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of a Person Object with a First Name" ;
+	rdfs:domain lexlegal:Person ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasLastName
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf lexlegal:hasName ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasLastName" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of a Person Object with a Last Name" ;
+	rdfs:domain lexlegal:Person ;
+	rdfs:range xsd:string .
+
+	
+lexlegal:hasURL
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:subPropertyOf vcard:url ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasURL" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with a URL" ;
+	rdfs:range xsd:anyURI .
+
+	
+lexlegal:hasURI
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:subPropertyOf vcard:url ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasURI" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with a URI" ;
+	rdfs:range xsd:anyURI .
+
+	
+lexlegal:hasMember
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:memberOf ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasMember" ;
+	dct:description "hasMember" ;
+  	rdfs:comment "This property associates an instance of an Object with a member" ;
+	rdfs:range lexlegal:Person .
+
+
+lexlegal:isMemberOf
+	  rdf:type owl:ObjectProperty ;
+	  owl:inverseOf lexlegal:hasMember ;
+	  rdfs:label "isMemberOf" ;
+	  rdfs:comment "This property associates an instance of a Person with an Entity" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Person .
+  
+
+  
+ 
+	
+lexlegal:hasEmail
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:email ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasEmail" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with an Email" ;
+	rdfs:range xsd:string .
+
+	
+lexlegal:hasPhone
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:telephone ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasPhone" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with an Phone" ;
+	rdfs:range xsd:string .
+
+	
+lexlegal:hasStartDate
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf lexlegal:hasDate ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasStartDate" ;
+	dct:description "todo" ;
+	rdfs:comment "This property associates an instance of an Subscription Event with a Date" ;
+	rdfs:domain lexlegal:Subscription ;
+	rdfs:range xsd:date .
+
+	
+lexlegal:hasEndDate
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf lexlegal:hasDate ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasEndDate" ;
+	dct:description "todo" ;
+	rdfs:comment "This property associates an instance of an Subscription Event with a Date" ;
+	rdfs:domain lexlegal:Subscription ;
+	rdfs:range xsd:date .
+
+
+
+lexlegal:hasDuration
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasDuration" ;
+	dct:description "todo" ;
+	rdfs:comment "This property associates an instance of an Subscription Event with a Duration" ;
+	rdfs:domain lexlegal:Subscription ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasDate
+	rdf:type owl:DatatypeProperty ;
+	owl:equivalentProperty dbo:eventDate ;
+	rdfs:isDefinedBy lexlegal: ;
+	dct:description "todo" ;
+	rdfs:label "hasDate" ;
+	rdfs:comment "This property associates an instance of an Event with a Date" ;
+	rdfs:range xsd:date .
+
+	
+	
+lexlegal:hasName
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:name ;
+	rdfs:subPropertyOf dbo:name ;
+	rdfs:subPropertyOf foaf:name ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasName" ;
+	dct:description "todo" ;
+  	rdfs:comment "This property associates an instance of an Object with a Name" ;
+	rdfs:range xsd:string .
+
+	
+lexlegal:hasCount
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasCount" ;
+	rdfs:comment "This property associates an instance of an Object with a number" ;
+	dct:description "todo" ;
+	rdfs:range xsd:double .
+
+
+
+lexlegal:hasDocumentType
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasDocumentType" ;
+	dct:description "todo" ;
+	rdfs:comment "This property associates an instance of an Object with a Document Type" ;
+	rdfs:range xsd:string .
+
+
+
+lexlegal:hasContent
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasContent" ;
+	dct:description "todo" ;
+	rdfs:comment "This property associates an instance of an Object with a Content" ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasAbstract
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy lexlegal: ;
+	rdfs:label "hasAbstract" ;
+	rdfs:comment "This property associates an instance of an Object with an Abstract Content" ;
+	dct:description "todo" ;
+	rdfs:range xsd:string .
+
+
+lexlegal:hasLocation
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasLocation" ;
+	  dct:description "todo" ;
+	  rdfs:comment "This property associates an instance of an Object with an Address" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:anyURI .
+
+	  
+lexlegal:isSectorOf
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "isSectorOf" ;
+	  rdfs:comment "This property associates an instance of an Object with a Sector" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasOrganization
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasOrganization" ;
+	  dct:description "todo" ;
+	  rdfs:comment "This property associates an instance of a Case with a Organization" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Organization.
+  
+
+
+  
+lexlegal:hasTitle
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasTitle" ;
+	  dct:description "todo" ;
+	  rdfs:comment "This property associates an instance of an Object with a Title" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasVerdict
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasVerdict" ;
+	  rdfs:comment "This property associates an instance of an Object with a verdict" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasAppeal
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasAppeal" ;
+	  rdfs:comment "This property associates an instance of an Object with an appeal note" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasDateDecided
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf lexlegal:hasDate ;
+	  rdfs:label "hasDateDecided" ;
+	  rdfs:comment "This property associates an instance of a Case with the date it was decided" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string . 
+  
+
+
+lexlegal:hasDeliveredJudgement 
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasDeliveredJudgement" ;
+	  rdfs:comment "This property associates an instance of a Case with a Delivered Judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasCounsel
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasCounsel" ;
+	  rdfs:comment "This property associates an instance of a Case with a Counsel" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Counsel .
+  
+
+
+lexlegal:hasCounselAppellant
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf lexlegal:hasCounsel ;
+	  rdfs:label "hasCounselAppellant" ;
+	  rdfs:comment "This property associates an instance of a Case with a Counsel for the Appellant" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Counsel .
+  
+
+lexlegal:hasCounselRespondent
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf lexlegal:hasCounsel ;
+	  rdfs:label "hasCounselRespondent" ;
+	  rdfs:comment "This property associates an instance of a Case with a Counsel for the Respondent" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Counsel .
+  
+
+
+  
+
+lexlegal:hasCauseOfAction
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasCauseOfAction" ;
+	  rdfs:comment "This property associates an instance of a Case with a Cause of Action eg fraud breach of contract etc" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:seeAlso p:Cause_of_action ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasMotionType
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasMotionType" ;
+	  rdfs:comment "This property associates an instance of a Case with a motion type" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasAppelant
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasAppelant" ;
+	  rdfs:comment "This property associates an instance of a Case with who is appealing the judgement before the court" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasRespondent
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasRespondent" ;
+	  rdfs:comment "This property associates an instance of a Case with who is required to answer for a petition brought before the court" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+ 
+lexlegal:hasIssue
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasIssue" ;
+	  rdfs:comment "This property associates an instance of an Case with an issue" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasFact
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasFact" ;
+	  rdfs:comment "This property associates an instance of a Case with a fact" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasFactWordFreq
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasFactWordFreq" ;
+	  rdfs:comment "This property associates Word Frequencies to the Fact of a Case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasFactEntities
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasFactEntities" ;
+	  rdfs:comment "This property associates Entities to the Fact of a Case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasFactTopics
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasFactTopics" ;
+	  rdfs:comment "This property associates Topics to the Fact of a Case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+
+lexlegal:hasPrinciples
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasPrinciples" ;
+	  rdfs:comment "This property associates an instance of a Case with principles" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasSubjectMatter
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasSubjectMatter" ;
+	  rdfs:comment "This property associates an instance of a Case with a subject matter of law treated in the case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasCaseHistory
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasCaseHistory" ;
+	  rdfs:comment "This property associates an instance of a Case with a case history" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+
+	  
+lexlegal:hasForeignCourtRulesReferred
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasForeignCourtRulesReferred" ;
+	  rdfs:comment "This property associates an instance of a Case with a foreign court rule that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+  
+lexlegal:hasReferredForeignCase
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasReferredCase ;
+	  rdfs:label "hasReferredForeignCase" ;
+	  rdfs:comment "This property associates an instance of a Case with a Foreign case that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Case .
+  
+
+lexlegal:hasReferredLocalCase
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasReferredCase ;
+	  rdfs:label "hasReferredLocalCase" ;
+	  rdfs:comment "This property associates an instance of a Case with a Local case that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Case .
+  
+
+lexlegal:hasReferredCase
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasReferredCase" ;
+	  rdfs:comment "This property associates an instance of a Case with a case that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Case .
+  
+
+lexlegal:wasReferrencedBy
+	  rdf:type owl:ObjectProperty ;
+	  owl:inverseOf lexlegal:hasReferredCase ;
+	  rdfs:label "wasReferrencedBy" ;
+	  rdfs:comment "This property associates an instance of a Case with a case that referenced or referred it" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Case .
+  
+
+lexlegal:hasStatute
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasStatute" ;
+	  rdfs:comment "This property associates an instance of a Case with a statute that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasReferredStatute
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf lexlegal:hasStatute ;
+	  rdfs:label "hasReferredStatute" ;
+	  rdfs:comment "This property associates an instance of a Case with a Local statute that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasReferredForeignStatute
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf lexlegal:hasStatute ;
+	  rdfs:label "hasReferredForeignStatute" ;
+	  rdfs:comment "This property associates an instance of a Case with a Foreign statute that were referred to or cited in the judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasCourt
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasCourt" ;
+	  rdfs:comment "This property associates an instance of a Case with a court type " ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexvocab:CourtType .
+  
+
+lexlegal:hasJudge
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasJudge" ;
+	  rdfs:comment "This property associates an instance of a case with a Judge" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Judge ;
+	  rdfs:range lexlegal:Case .
+  
+
+ 
+lexlegal:hasOtherJudge
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasJudge ;
+	  rdfs:label "hasOtherJudge" ;
+	  rdfs:comment "This property associates an instance of a Case with an unclassified judge " ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Judge .
+  
+
+lexlegal:hasJudgeWithConcurringOpinion
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasJudge ;
+	  rdfs:label "hasJudgeWithConcurringOpinion" ;
+	  rdfs:comment "This property associates an instance of a Case with a judge that agrees with the decision made by majority of the court" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Judge .
+  
+
+lexlegal:hasJudgeWithDissent
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasJudge ;
+	  rdfs:label "hasJudgeWithDissent" ;
+	  rdfs:comment "This property associates an instance of a Case with the judge that delivered dissenting opinion" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Judge .
+  
+
+lexlegal:hasJudgeMajorityJudgement
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasJudge ;
+	  rdfs:label "hasJudgeMajorityJudgement" ;
+	  rdfs:comment "This property associates an instance of a Case with the judge that delivered leading judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Judge .
+  
+
+lexlegal:hasPresidingJudge
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasJudge ;
+	  rdfs:label "hasPresidingJudge" ;
+	  rdfs:comment "This property associates an instance of a Case with the judge that presided over the case" ;
+	  owl:equivalentProperty lexlegal:hasJudgeMajorityJudgement, lexlegal:hasJudgeWithDissent, lexlegal:hasJudgeWithConcurringOpinion, lexlegal:hasOtherJudges ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Judge .
+  
+
+  
+lexlegal:isJudgeOf
+	  rdf:type owl:ObjectProperty ;
+	  owl:inverseOf lexlegal:hasJudge ;
+	  rdfs:label "isJudgeOf" ;
+	  rdfs:comment "This property associates an instance of a Judge with a case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Judge ;
+	  rdfs:range lexlegal:Case .
+  
+
+  
+  
+  
+  
+
+lexlegal:hasAuthor
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf schema:author ;
+	  rdfs:label "hasAuthor" ;
+	  rdfs:comment "This property associates an instance of an Object with an Author" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Article ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:isAuthorOf
+	  rdf:type owl:ObjectProperty ;
+	  owl:inverseOf lexlegal:hasAuthor ;
+	  rdfs:label "isAuthorOf" ;
+	  rdfs:comment "This property associates an instance of an Object with an Article" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Person ;
+	  rdfs:range lexlegal:Article .
+  
+
+
+lexlegal:hasAreaOfLaw
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasAreaOfLaw" ;
+	  rdfs:comment "This property associates an instance of an Article or a Case with an Area of Law" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Article, lexlegal:Case ;
+	  rdfs:range lexvocab:AreaOfLaw .
+  
+
+
+lexlegal:hasCitation
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf schema:citation ;
+	  rdfs:label "hasCitation" ;
+	  rdfs:comment "This property associates an instance of a Document with a Citation" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Article, lexlegal:Case ;
+	  rdfs:range lexlegal:Citation .
+
+
+lexlegal:citedBy
+	  rdf:type owl:ObjectProperty ;
+	  owl:inverseOf lexlegal:hasCitation ;
+	  rdfs:subPropertyOf schema:citation ;
+	  rdfs:label "citedBy" ;
+	  rdfs:comment "This property associates an instance of a Citation with a Document" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: .
+	  
+
+lexlegal:hasReferredCitation
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf schema:citation ;
+	  rdfs:label "hasCitation" ;
+	  rdfs:comment "This property associates an instance of a Document with a referred Citation" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Article, lexlegal:Case ;
+	  rdfs:range lexlegal:Citation .
+
+
+
+lexlegal:hasParty
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasParty" ;
+	  rdfs:comment "This property associates an instance of a Document with a Party or Person" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Person .
+  
+
+lexlegal:isPartyOf
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "isPartyOf" ;
+	  owl:inverseOf lexlegal:hasParty ;
+	  rdfs:comment "This property associates an instance of a Party or Person with a Document" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: .
+  
+
+
+lexlegal:hasDefendant
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasParty ;
+	  rdfs:label "hasDefendant" ;
+	  rdfs:comment "This property associates a Case with a Defendant" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Person .
+  
+
+  
+lexlegal:hasPlantiff
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasParty ;
+	  rdfs:label "hasPlantiff" ;
+	  rdfs:comment "This property associates a Case with a Plantiff" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Person .
+  
+
+lexlegal:hasAppellant
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasParty ;
+	  rdfs:label "hasAppellant" ;
+	  rdfs:comment "This property associates a Case with an Appellant" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Person .
+  
+
+lexlegal:hasRespondent
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf lexlegal:hasParty ;
+	  rdfs:label "hasRespondent" ;
+	  rdfs:comment "This property associates a Case with a Respondent" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Person .
+  
+
+  
+lexlegal:hasJudgement
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasJudgement" ;
+	  rdfs:comment "This property associates an instance of a Case with a Judgement" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+  
+lexlegal:hasCauseOfAction
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasCauseOfAction" ;
+  	rdfs:comment "This property associates an instance of a Case with a cause of action" ;
+	dct:description "todo" ;
+    rdfs:isDefinedBy lexlegal: ;
+  	rdfs:domain lexlegal:Case ;
+  	rdfs:range lexvocab:CauseOfAction .
+
+
+  
+lexlegal:hasMotionType
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasMotionType" ;
+  	rdfs:comment "This property associates an instance of a Case with a motion type" ;
+	dct:description "todo" ;
+    rdfs:isDefinedBy lexlegal: ;
+  	rdfs:domain lexlegal:Case ;
+  	rdfs:range lexvocab:MotionType .
+
+
+  
+lexlegal:hasPartyType
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasPartyType" ;
+  	rdfs:comment "This property associates an instance of a Case with a party type" ;
+    rdfs:isDefinedBy lexlegal: ;
+	dct:description "todo" ;
+  	rdfs:domain lexlegal:Case ;
+  	rdfs:range lexvocab:PartyType .
+
+
+  
+lexlegal:isAbout
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "isAbout" ;
+	  rdfs:comment "This property associates an instance of an Object with an About" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:string .
+	  
+	  
+  
+lexlegal:hasTopic
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf dct:subject ;
+  	rdfs:label "hasTopic" ;
+  	rdfs:comment "This property associates an instance of a Legal Document with a Legal Topic" ;
+    rdfs:isDefinedBy lexlegal: ;
+	dct:description "todo" ;
+  	rdfs:range lexvocab:LexanalyticsTerms .
+
+
+
+# ---------------------------------------------------------------------------
+# citation properties
+#
+  
+lexlegal:hasVolume
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasVolume" ;
+	  rdfs:comment "This property associates an instance of a Citation with a volume number of the reporter in which the case appears" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Citation ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasReporter
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasReporter" ;
+	  rdfs:comment "This property associates an instance of a Citation with a reporter" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Citation ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasPage
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasPage" ;
+	  rdfs:comment "This property associates an instance of a Citation with the page on which the case begins" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Citation ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasYear
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasYear" ;
+	  rdfs:comment "This property associates an instance of a Citation with the year the decision was rendered" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Citation ;
+	  rdfs:range xsd:string .
+  
+
+  
+lexlegal:hasCoverArea
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasCoverArea" ;
+	  rdfs:comment "This property associates a Statue with a geographic region" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Statute ;
+	  rdfs:range xsd:anyURI .
+  
+# ----- end citation
+  
+ 
+lexlegal:hasEntity
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasEntity" ;
+	  rdfs:comment "This property associates an instance of an Object with a Mention of an Entity" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:string .
+  
+
+  
+  
+lexlegal:wasViewed
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "wasViewed" ;
+	  rdfs:comment "This property associates an instance of an Event with a document viewing" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Event ;
+	  rdfs:range xsd:string .
+  
+lexlegal:wasSearched
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "wasSearched" ;
+	  rdfs:comment "This property associates an instance of an Event with a document search" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Event ;
+	  rdfs:range xsd:string .
+  
+lexlegal:isStemmerSynonym
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "isStemmerSynonym" ;
+	  rdfs:comment "This property associates an altlabel with its stemmer" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexvocab:Concept ;
+	  rdfs:range xsd:string .
+  
+lexlegal:hasFactTopicsStemmed
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasFactTopicsStemmed" ;
+	  rdfs:comment "This property associates Stemmed Topics to the Fact of a Case" ;
+	  dct:description "todo" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+# 2022
+
+lexlegal:hasDateDecided
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf lexlegal:hasDate ;
+	rdfs:isDefinedBy lexlegal: ;
+	dct:description "Decided Date of a Case" ;
+	rdfs:label "hasDateDecided" ;
+	rdfs:comment "This property associates an instance of a Case with a Decided Date" ;
+	rdfs:range xsd:date .
+
+
+lexlegal:hasPracticeProcedureIssues
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasPracticeProcedureIssues" ;
+	  rdfs:comment "This property associates an instance of a Case with Practice & Procedure Issues" ;
+	  dct:description "Practice & Procedure Issues of a Case" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasIssuesForDeterminationAppellant
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasIssuesForDeterminationAppellant" ;
+	  rdfs:comment "This property associates an instance of a Case with Issues for Determination for Appellant" ;
+	  dct:description "Issues for Determination Appellant" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasIssuesForDeterminationRespondent
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasIssuesForDeterminationRespondent" ;
+	  rdfs:comment "This property associates an instance of a Case with Issues for Determination for Respondent" ;
+	  dct:description "Issues for Determination Respondent" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+
+lexlegal:hasSummary
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:label "hasSummary" ;
+	  rdfs:comment "This property associates an instance of a Case with a Summary" ;
+	  dct:description "Case Summary" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range xsd:string .
+  
+
+lexlegal:hasNigerianConstitutionSection2011
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasNigerianConstitutionSection2011" ;
+	  rdfs:comment "This property associates an instance of a Case with a Section of the Nigerian Constitution" ;
+	  dct:description "Section of 2011 Nigerian Constitution" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:domain lexlegal:Case ;
+	  rdfs:range lexlegal:Constitution .
+
+
+lexlegal:hasWikiURI
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:label "hasWikiURI" ;
+	  dct:description "Wikipedia reference for this object" ;
+	  rdfs:comment "This property associates an instance of an Object with a Wikipedia URI" ;
+	  rdfs:isDefinedBy lexlegal: ;
+	  rdfs:range xsd:anyURI .
+
+	  
+	
